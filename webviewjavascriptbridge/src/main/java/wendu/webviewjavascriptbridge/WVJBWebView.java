@@ -823,6 +823,16 @@ public class WVJBWebView extends WebView {
 
     private WebViewClient mWebViewClient = new WebViewClient() {
 
+        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            if (webViewClient != null) {
+                return webViewClient.shouldOverrideUrlLoading(view, request);
+            } else {
+                return super.shouldOverrideUrlLoading(view, request);
+            }
+        }
+        
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (webViewClient != null) {
